@@ -27,6 +27,7 @@ const Owner = require('./Owner')(sequelize);
 const Pet   = require('./Pet')(sequelize);
 const Vaccine = require('./Vaccine')(sequelize);
 const Consultation = require('./Consultation')(sequelize);
+const User = require('./User')(sequelize);
 
 // ── Associations ─────────────────────────────────────────────────────
 Owner.hasMany(Pet,   { foreignKey: 'ownerId', as: 'pets' });
@@ -38,4 +39,4 @@ Vaccine.belongsTo(Pet,    { foreignKey: 'petId', as: 'pet' });
 Pet.hasMany(Consultation,      { foreignKey: 'petId', as: 'consultations' });
 Consultation.belongsTo(Pet,    { foreignKey: 'petId', as: 'pet' });
 
-module.exports = { sequelize, Owner, Pet, Vaccine, Consultation };
+module.exports = { sequelize, Owner, Pet, Vaccine, Consultation, User };

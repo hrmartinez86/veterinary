@@ -50,6 +50,7 @@ export default function PetList() {
             <div className="flex gap-3 flex-wrap">
               <Link to="/mascotas/nueva" className="btn-primary text-sm">+ Nueva mascota</Link>
               <Link to="/duenos" className="btn-outline text-sm">Gestionar dueños</Link>
+              <Link to="/usuarios/nuevo" className="btn-outline text-sm">👤 Dar de alta usuario</Link>
             </div>
           </div>
 

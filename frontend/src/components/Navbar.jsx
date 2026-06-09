@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const NAV_LINKS = [
   { id: 'servicios', label: 'Servicios' },
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const isApp = pathname !== '/';
 
   const scrollToSection = sectionId => {
@@ -32,6 +34,12 @@ export default function Navbar() {
     }
 
     scrollToSection(sectionId);
+  };
+
+  const handleLogout = async () => {
+    setOpen(false);
+    await logout();
+    navigate('/', { replace: true });
   };
 
   useEffect(() => {
@@ -71,6 +79,13 @@ export default function Navbar() {
             </button>
           ))}
           <Link to="/mascotas" className="btn-primary text-sm py-2">Ver mascotas</Link>
+          {user ? (
+            <button type="button" onClick={handleLogout} className="btn-outline text-sm py-2">
+              Salir
+            </button>
+          ) : (
+            <Link to="/login" className="btn-outline text-sm py-2">Iniciar sesión</Link>
+          )}
         </div>
 
         {/* Mobile hamburger */}
@@ -91,6 +106,15 @@ export default function Navbar() {
             </button>
           ))}
           <Link to="/mascotas" onClick={() => setOpen(false)} className="btn-primary w-full text-sm">Ver mascotas</Link>
+          {user ? (
+            <button type="button" onClick={handleLogout} className="btn-outline w-full text-sm">
+              Salir
+            </button>
+          ) : (
+            <Link to="/login" onClick={() => setOpen(false)} className="btn-outline w-full text-sm">
+              Iniciar sesión
+            </Link>
+          )}
         </div>
       )}
     </nav>
