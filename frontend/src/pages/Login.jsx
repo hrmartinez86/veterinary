@@ -54,13 +54,16 @@ export default function Login() {
 
           <div className="mt-10 grid grid-cols-2 gap-4 max-w-xl">
             {[
-              ['Gestiona dueños', 'Información de contacto y mascotas asociadas'],
-              ['Mascotas', 'Datos completos de cada mascota registrada'],
-              ['Vacunas', 'Control de vacunas aplicadas y próximas aplicaciones'],
-              ['Consultas', 'Registro y seguimiento de consultas veterinarias'],
-            ].map(([title, detail]) => (
+              ['👥', 'Gestiona dueños', 'Información de contacto y mascotas asociadas'],
+              ['🐾', 'Mascotas', 'Datos completos de cada mascota registrada'],
+              ['💉', 'Vacunas', 'Control de vacunas aplicadas y próximas aplicaciones'],
+              ['🩺', 'Consultas', 'Registro y seguimiento de consultas veterinarias'],
+            ].map(([icon, title, detail]) => (
               <div key={title} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-                <p className="font-semibold text-white">{title}</p>
+                <p className="font-semibold text-white flex items-center gap-2">
+                  <span aria-hidden="true">{icon}</span>
+                  <span>{title}</span>
+                </p>
                 <p className="mt-1 text-sm text-white/65">{detail}</p>
               </div>
             ))}
@@ -121,10 +124,6 @@ export default function Login() {
                 {submitting ? 'Validando...' : 'Entrar'}
               </button>
             </form>
-
-            <div className="mt-6 rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
-              Credenciales iniciales de desarrollo: <span className="font-semibold">admin@vetcare.local</span> / <span className="font-semibold">VetCare123!</span>
-            </div>
           </div>
         </section>
       </div>
