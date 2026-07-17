@@ -8,7 +8,8 @@ export default function Login() {
   const { user, loading, login } = useAuth();
   const from = location.state?.from?.pathname || '/mascotas';
 
-  const [form, setForm] = useState({ email: 'admin@vetcare.local', password: 'VetCare123!' });
+  const [form, setForm] = useState({ email: '', password: '' });
+  // const [form, setForm] = useState({ email: 'admin@vetcare.local', password: 'VetCare123!' });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
